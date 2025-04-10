@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SummarIQ — YouTube Summarizer</title>
+</head>
+<body>
+  <h1>YouTube Video Summarizer</h1>
+  <input type="text" id="videoUrl" placeholder="Paste YouTube URL here" size="50">
+  <button onclick="summarize()">Summarize</button>
+
+  <h2>Summary:</h2>
+  <pre id="summaryOutput">...</pre>
+
+  <script>
+    async function summarize() {
+      const url = document.getElementById("videoUrl").value;
+      const output = document.getElementById("summaryOutput");
+      output.textContent = "⏳ Summarizing... Please wait...";
+
+      try {
+        const response = await fetch("http://localhost:5000/summarize", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ url })
+        });
+
+        const data = await response.json();
+        if (data.error) {
+          output.textContent = "❌ Error: " + data.error;
+        } else {
+          output.textContent = data.summary;
+        }
+      } catch (err) {
+        output.textContent = "❌ Network Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
