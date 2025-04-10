@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Summarizer</title>
+  <style>
+    body { font-family: Arial, sans-serif; width: 300px; padding: 10px; }
+    input, textarea { width: 100%; }
+    textarea { height: 120px; margin-top: 10px; }
+    button { margin-top: 10px; width: 100%; }
+  </style>
+</head>
+<body>
+  <h3>Summarize a YouTube Video</h3>
+  <input type="text" id="urlInput" placeholder="Paste YouTube URL" />
+  <button id="summarizeBtn">Summarize</button>
+  <textarea id="output" readonly placeholder="Summary will appear here..."></textarea>
+
+  <script src="popup.js"></script>
+</body>
+</html>
